@@ -104,7 +104,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="connectionStrings.json" />
     <None Include="project.json" />
     <None Include="Service References\rpi-sensehat-iot-hub\ConnectedService.json" />
   </ItemGroup>
