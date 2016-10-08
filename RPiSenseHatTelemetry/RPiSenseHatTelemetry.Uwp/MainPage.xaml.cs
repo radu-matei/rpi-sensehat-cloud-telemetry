@@ -25,7 +25,14 @@ namespace RPiSenseHatTelemetry.Uwp
             this.Loaded += (sender, e) =>
             {
                 DispatcherTimer timer = new DispatcherTimer();
-                timer.Tick += async (x, y) => await _iotHubConnection.SendEventAsync(JsonConvert.SerializeObject(_senseHat.GetTemperature()));
+
+                timer.Tick += async (x, y) =>
+                {
+                    var temperatureTelemetry = _senseHat.GetTemperature();
+                    this.temperatureTextBlock.Text = "Temperature: " + temperatureTelemetry.Temperature.ToString();
+                    await _iotHubConnection.SendEventAsync(JsonConvert.SerializeObject(temperatureTelemetry));
+                };
+
                 timer.Interval = TimeSpan.FromSeconds(3);
                 timer.Start();
             };
