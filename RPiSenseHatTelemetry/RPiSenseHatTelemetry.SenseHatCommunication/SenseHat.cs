@@ -6,7 +6,7 @@ using RPiSenseHatTelemetry.Common;
 
 namespace RPiSenseHatTelemetry.SenseHatCommunication
 {
-    public class SenseHat
+    public class SenseHat : IDisposable
     {
         private ISenseHat _senseHat { get; set; }
 
@@ -37,6 +37,10 @@ namespace RPiSenseHatTelemetry.SenseHatCommunication
             }
         }
 
+        public void Dispose()
+        {
+            _senseHat.Dispose();
+        }
 
     }
 }
