@@ -28,7 +28,7 @@ namespace RPiSenseHatTelemetry.SenseHatCommunication
                 {
                     return new TemperatureTelemetry()
                     {
-                        TimeStamp = DateTime.Now,
+                        Time = DateTime.Now,
                         Temperature = _senseHat.Sensors.Temperature.Value
                     };
                 }
