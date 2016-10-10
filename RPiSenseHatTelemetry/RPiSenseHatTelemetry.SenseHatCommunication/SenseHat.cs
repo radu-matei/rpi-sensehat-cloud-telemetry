@@ -28,8 +28,8 @@ namespace RPiSenseHatTelemetry.SenseHatCommunication
                 {
                     return new TemperatureTelemetry()
                     {
-                        Time = DateTime.Now,
-                        Temperature = _senseHat.Sensors.Temperature.Value
+                        Time = DateTime.UtcNow.AddHours(3).ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        Temperature = Math.Round(_senseHat.Sensors.Temperature.Value, 2)
                     };
                 }
 
