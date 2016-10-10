@@ -6,7 +6,7 @@ using RPiSenseHatTelemetry.Common;
 
 namespace RPiSenseHatTelemetry.SenseHatCommunication
 {
-    public class SenseHat
+    public class SenseHat : IDisposable
     {
         private ISenseHat _senseHat { get; set; }
 
@@ -28,8 +28,8 @@ namespace RPiSenseHatTelemetry.SenseHatCommunication
                 {
                     return new TemperatureTelemetry()
                     {
-                        TimeStamp = DateTime.Now,
-                        Temperature = _senseHat.Sensors.Temperature.Value
+                        Time = DateTime.UtcNow.AddHours(3).ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                        Temperature = Math.Round(_senseHat.Sensors.Temperature.Value, 2)
                     };
                 }
 
@@ -37,6 +37,10 @@ namespace RPiSenseHatTelemetry.SenseHatCommunication
             }
         }
 
+        public void Dispose()
+        {
+            _senseHat.Dispose();
+        }
 
     }
 }
